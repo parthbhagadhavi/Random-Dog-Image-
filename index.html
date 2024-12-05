@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Image</title>
+    <link rel="shortcut icon"
+        href="https://avatars.mds.yandex.net/i?id=6fe3f5f0a3b23e53e14a3ce5d7f3b3fb5fc070680ea66557-4009035-images-thumbs&n=13"
+        type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #E195AB;
+            flex-direction: column;
+        }
+
+        #dog_img {
+            height: 350px;
+            width: 320px;
+            background: #E195AB;
+        }
+
+        #btn {
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 20px;
+            border: none;
+            outline: none;
+            border-radius: 30px;
+            font-family: 'Courier New', Courier, monospace;
+            background: #FFCCE1;
+        }
+    </style>
+</head>
+
+<body>
+    <H1 style="margin-bottom: 100px; font-family: fantasy; text-decoration: underline;">Random Dog Image</H1>
+    <img src="" id="dog_img" alt="">
+    <button id="btn">Click Me!</button>
+    <script>
+     async function getDogImage() {
+    try {
+        let getimg = document.getElementById('dog_img');
+        let btn1 = document.getElementById('btn');
+
+        btn1.addEventListener('click', async () => {
+            let fetch1 = await fetch('https://dog.ceo/api/breeds/image/random');
+            let final = await fetch1.json();
+            getimg.src = final.message;
+        });
+
+  
+        let initialFetch = await fetch('https://dog.ceo/api/breeds/image/random');
+        let initialImage = await initialFetch.json();
+        getimg.src = initialImage.message;
+
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+getDogImage();
+    </script>
+</body>
+
+</html>
